@@ -406,10 +406,13 @@ $(function(){
     
 
     Laser.render()
-    Laser.time = Laser.time > 0 ? Laser.time - 10 : 0
+    if (!pause){
+      Laser.time = Laser.time > 0 ? Laser.time - 10 : 0
+      Bullet.time = Bullet.time > 0 ? Bullet.time - 10 : 0
+    }
+    
     Enemy.render()
     Bullet.render()
-    Bullet.time = Bullet.time > 0 ? Bullet.time - 10 : 0
     weaponTime()
     ctx.restore()
     if (pause){
