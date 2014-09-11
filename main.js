@@ -98,7 +98,7 @@ $(function(){
     }
   })
   $('canvas').mousedown(function(){
-    if (weapon == 2 && Laser.time <= 0)
+    if (weapon == 2 && Laser.time <= 0 && !pause)
       Laser.width = Laser.min_width
       Laser.clicked = true
   })
@@ -218,7 +218,7 @@ $(function(){
   Laser.min_width = 5
   Laser.max_width = 50
   Laser.render = function() {
-    if (Laser.clicked)
+    if (Laser.clicked && !pause)
       Laser.width+=0.1
     if (weapon == 2){
       ctx.save()
