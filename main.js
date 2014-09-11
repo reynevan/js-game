@@ -149,16 +149,18 @@ $(function(){
     this.x = Math.round(this.center.x + 20*Math.sin(this.deg)*this.t/100 + Math.sin(this.deg)*turret.r)
     this.y = Math.round(this.center.y + 20*Math.cos(this.deg)*this.t/100 + Math.cos(this.deg)*turret.r)
     this.r = 2*(Math.sin(this.pulse_t/100)+2)+5
+    this.color = 'rgb(0,220,'+Math.round(255*(0.5*Math.cos(this.pulse_t/2000)+0.5))+')'
+    
   }
   Bullet.setStyles = function(){
     ctx.lineWidth = 20
     ctx.strokeStyle = '#eef'
-    ctx.shadowColor = '#0f0'
     ctx.shadowOffsetX = 0
     ctx.shadowOffsetY = 0
-    ctx.shadowBlur = 10
+    ctx.shadowBlur = 15
   }
   Bullet.prototype.draw = function(){
+    ctx.shadowColor = this.color
     ctx.lineWidth = 0
     ctx.beginPath()
     ctx.arc(this.x,this.y,this.r,0, 2*Math.PI)
@@ -211,8 +213,9 @@ $(function(){
    this.start = d.getTime()
   }
   Laser.time = 0
-  Laser.wait = 500
+  Laser.wait = 800
   Laser.width = 5
+  Laser.sustain = 100
   Laser.clicked = false
   Laser.min_width = 5
   Laser.max_width = 150
@@ -237,7 +240,7 @@ $(function(){
     }
     if (lasers.length > 0){
       laser = lasers[0]
-      if (laser.t > 300){
+      if (laser.t > Laser.sustain){
         Laser.width = Laser.min_width
         lasers.pop()
       }
