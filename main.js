@@ -1,7 +1,7 @@
 $(function(){
   var canvas = document.getElementById('can')
-  w = 1280//$(window).width()
-  h = 840//$(window).height()
+  w = 1280
+  h = 840
   canvas.width = w
   canvas.height = h
   var ctx = canvas.getContext('2d')
