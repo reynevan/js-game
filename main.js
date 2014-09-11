@@ -116,8 +116,7 @@ $(function(){
     bullets = new Array()
     lasers = new Array()
     enemies = new Array()
-    data = new Date()
-    start = data.getTime()
+    game_time = 0
     pause = false
     user.hp = 100
     user.points = 0
@@ -307,9 +306,11 @@ $(function(){
    // }
   }
   Enemy.t = 0
+  Enemy.interval = 2000
   Enemy.create = function(){
-    Enemy.t +=interval
-    if ((Math.round(Enemy.t/10) % 100 == 0) && !pause && start)
+    //Enemy.t +=interval
+    Enemy.interval= game_time > 1000*60*2 ? 200 : 10*(Math.round( (2000-(1800*game_time)/(1000*60*2))/10 ))
+    if ((Math.round(game_time) % Enemy.interval == 0) && !pause && start)
       enemies.push(new Enemy())
   }
   Enemy.render = function(){
@@ -364,7 +365,8 @@ $(function(){
   }
 
   draw = function(){
-    
+    if (!pause && start)
+      game_time+=interval
     if (dir == 1)
       turret.deg-=0.05
     else if (dir == 2)
@@ -391,6 +393,7 @@ $(function(){
     ctx.fillText('Pause: '+onOff(pause) , 100,20)
     ctx.fillText('Points: '+user.points, 300,20)
     ctx.fillText('W - up, S - DOWN, LMB - FIRE, R - RESTART, P - PAUSE WEAPONS: 1,2', 400,20)
+    ctx.fillText(Enemy.interval, 100,100)
     ctx.translate(turret.x, turret.y)
     ctx.rotate(turret.deg)
     ctx.strokeStyle = '#eef'
