@@ -396,6 +396,8 @@ $(function(){
     ctx.fillText('Pause: '+onOff(pause) , 100,20)
     ctx.fillText('Points: '+user.points, 300,20)
     ctx.fillText('W - up, S - DOWN, LMB - FIRE, R - RESTART, P - PAUSE WEAPONS: 1,2', 400,20)
+    if (weapon == 2)
+      ctx.fillText('HOLD LMB TO INCREASE LASER POWER!!!', 500,h-20)
     ctx.translate(turret.x, turret.y)
     ctx.rotate(turret.deg)
     ctx.strokeStyle = '#eef'
