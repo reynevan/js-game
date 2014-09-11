@@ -216,10 +216,10 @@ $(function(){
   Laser.width = 5
   Laser.clicked = false
   Laser.min_width = 5
-  Laser.max_width = 50
+  Laser.max_width = 150
   Laser.render = function() {
     if (Laser.clicked && !pause)
-      Laser.width+=0.1
+      Laser.width = Laser.width >= Laser.max_width ? Laser.max_width : Laser.width + 0.1
     if (weapon == 2){
       ctx.save()
       ctx.lineWidth = 5
