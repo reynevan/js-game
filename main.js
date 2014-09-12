@@ -98,6 +98,7 @@ $(function(){
     }
   })
   $('canvas').mousedown(function(){
+    
     if (weapon == 2 && Laser.time <= 0 && !pause)
       Laser.width = Laser.min_width
       Laser.clicked = true
@@ -146,8 +147,8 @@ $(function(){
     if (!pause && start)
       this.t += interval 
     this.pulse_t += interval
-    this.x = Math.round(this.center.x + 20*Math.sin(this.deg)*this.t/100 + Math.sin(this.deg)*turret.r)
-    this.y = Math.round(this.center.y + 20*Math.cos(this.deg)*this.t/100 + Math.cos(this.deg)*turret.r)
+    this.x = Math.round(this.center.x + 20*Math.sin(this.deg)*this.t/50 + Math.sin(this.deg)*turret.r)
+    this.y = Math.round(this.center.y + 20*Math.cos(this.deg)*this.t/50 + Math.cos(this.deg)*turret.r)
     this.r = 2*(Math.sin(this.pulse_t/100)+2)+5
     this.color = 'rgb(0,220,'+Math.round(255*(0.5*Math.cos(this.pulse_t/2000)+0.5))+')'
     
@@ -371,9 +372,9 @@ $(function(){
     if (!pause && start)
       game_time+=interval
     if (dir == 1)
-      turret.deg-=0.05
+      turret.x-=2
     else if (dir == 2)
-      turret.deg+=0.05
+      turret.x+=2
 
     if (turret.deg > 2*Math.PI || turret.deg < -2*Math.PI)
       turret.deg %= 2*Math.PI
@@ -395,7 +396,7 @@ $(function(){
     ctx.fillText(weapon,10,20)
     ctx.fillText('Pause: '+onOff(pause) , 100,20)
     ctx.fillText('Points: '+user.points, 300,20)
-    ctx.fillText('W - up, S - DOWN, LMB - FIRE, R - RESTART, P - PAUSE WEAPONS: 1,2', 400,20)
+    ctx.fillText('WSAD  - MOVE, LMB - FIRE, R - RESTART, P - PAUSE WEAPONS: 1,2', 400,20)
     if (weapon == 2)
       ctx.fillText('HOLD LMB TO INCREASE LASER POWER!!!', 500,h-20)
     ctx.translate(turret.x, turret.y)
