@@ -1,11 +1,25 @@
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>PEW PEW PEW!!!</title>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   <script type='text/javascript' src= 'main.js'></script>
+  <script type='text/javascript' src= 'soundmanager2.js'></script>
   <link href='style.css' rel='stylesheet'>
 </head>
 <body>
+<div></div>
   <canvas id = "can" width = "500" height = "500"></canvas>
+  <script src="soundmanager2.js"></script>
+<script>
+  soundManager.setup({
+    // where to find flash audio SWFs, as needed
+    url: '/path/to/swf-files/',
+    onready: function() {
+      // SM2 is ready to play audio!
+    }
+  });
+</script>
 </body>
 </html
